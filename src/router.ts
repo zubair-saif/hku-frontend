@@ -45,6 +45,11 @@ const routes: Array<RouteConfig> = [
     component: AddUpdateUserComponent
   },
   {
+    path: '/update-user/:id',
+    name: 'update-user',
+    component: AddUpdateUserComponent
+  },
+  {
     path: '/profile',
     name: 'profile',
     // lazy-loaded
@@ -78,12 +83,12 @@ router.beforeEach((to, from, next) => {
   const publicPages = ['login', 'forget', 'reset-password'];
   const authRequired = !publicPages.includes(to.name || '');
   const loggedIn = JSON.parse(localStorage.getItem('user')!);
-  // console.log(loggedIn.roles);
+  console.log(loggedIn.roles);
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (authRequired && !loggedIn) {
     next('/login');
-  } else if (to.name == 'new-user' && loggedIn && loggedIn.roles != 'admin') {
+  } else if ((to.name == 'new-user' || to.name=='update-user') && loggedIn && loggedIn.roles != 'admin') {
     next('/profile');
   } else {
     next();

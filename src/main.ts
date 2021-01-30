@@ -25,6 +25,5 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 new Vue({
   router,
   store,
-  history: true,
   render: h => h(App)
 }).$mount('#app');

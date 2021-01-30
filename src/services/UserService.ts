@@ -28,7 +28,24 @@ class UserService {
   changePassword(form: any) {
     return axios.post(API_URL + 'users/changePassword', form, { headers: authHeader() });
   }
+  addUser(form){
+    return axios.post(API_URL + 'users/signup', form, { headers: authHeader() });
+  }
+  updateUser(form){
+    return axios.put(API_URL + 'users/updateUser/'+form.id, form, { headers: authHeader() });
+  }
 
+  getUsers(){
+    return axios.get(API_URL + 'users/', { headers: authHeader() });
+  }
+
+  getUser(id){
+    return axios.get(API_URL + 'users/'+id, { headers: authHeader() });
+  }
+
+  deleteUser(id){
+    return axios.delete(API_URL + 'users/deleteUser/'+id, { headers: authHeader() });
+  }
 }
 
 export default new UserService();

@@ -6,19 +6,35 @@
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
-      <form name="form" @submit.prevent="handleRegister">
+      <form name="form" @submit.prevent="handleSubmit">
         <div v-if="!successful">
           <div class="form-group">
-            <label for="email">email</label>
+            <label for="email">Name</label>
             <input
-              v-model="user.email"
+              v-model="user.name"
               v-validate="'required|min:3|max:20'"
               type="text"
               class="form-control"
-              name="email"
+              name="name"
             />
-            <div v-if="submitted && errors.has('email')" class="alert-danger">
-              {{ errors.first("email") }}
+            <div v-if="submitted && errors.has('name')" class="alert-danger">
+              {{ errors.first("name") }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Username</label>
+            <input
+              v-model="user.username"
+              v-validate="'required|min:3|max:20'"
+              type="text"
+              class="form-control"
+              name="name"
+            />
+            <div
+              v-if="submitted && errors.has('username')"
+              class="alert-danger"
+            >
+              {{ errors.first("username") }}
             </div>
           </div>
           <div class="form-group">
@@ -51,6 +67,25 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="password">Role</label>
+            <select
+              v-model="user.roles"
+              v-validate="'required'"
+              class="form-control"
+            >
+              <option value="">Select Role</option>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+            </select>
+            <div
+              v-if="submitted && errors.has('password')"
+              class="alert-danger"
+            >
+              {{ errors.first("password") }}
+            </div>
+          </div>
+
+          <div class="form-group">
             <button class="btn btn-primary btn-block">Sign Up</button>
           </div>
         </div>
@@ -70,11 +105,19 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
+import UserService from "@/services/UserService";
 const Auth = namespace("Auth");
 
 @Component
 export default class AddUpdateUser extends Vue {
-  private user: any = { email: "", password: "" };
+  private user: any = {
+    id: "",
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    roles: "",
+  };
 
   private submitted: boolean = false;
   private successful: boolean = false;
@@ -82,34 +125,53 @@ export default class AddUpdateUser extends Vue {
 
   @Auth.Getter
   private isLoggedIn!: boolean;
-
-  @Auth.Action
-  private register!: (data: any) => Promise<any>;
-
-  mounted() {
-    if (this.isLoggedIn) {
-      this.$router.push("/profile");
+  created() {
+    if (this.$route.params.id) {
+      this.user.id = this.$route.params.id;
+      /* we will send request for single and patch it data this user obj */
+      UserService.getUser(this.$route.params.id).then((response) => {
+        if (response && response.status == 200) {
+          this.user = response.data;
+        }
+      });
     }
   }
 
-  handleRegister() {
+  handleSubmit() {
     this.message = "";
     this.submitted = true;
+    this.user.roles = [this.user.roles];
 
-    this.$validator.validate().then((isValid) => {
-      if (isValid) {
-        this.register(this.user).then(
-          (data) => {
-            this.message = data.message;
-            this.successful = true;
-          },
-          (error) => {
-            this.message = error;
-            this.successful = false;
-          }
-        );
-      }
-    });
+    if (this.$route.params.id) {
+      /* write put request here */
+      UserService.updateUser(this.user).then(
+        (data) => {
+          this.message = data.message;
+          // this.successful = true;
+          this.$router.push("/admin");
+        },
+        (error) => {
+          this.message = error;
+          this.successful = false;
+        }
+      );
+    } else {
+      this.$validator.validate().then((isValid) => {
+        if (isValid) {
+          UserService.addUser(this.user).then(
+            (data) => {
+              this.message = data.message;
+              // this.successful = true;
+              this.$router.push("/admin");
+            },
+            (error) => {
+              this.message = error;
+              this.successful = false;
+            }
+          );
+        }
+      });
+    }
   }
 }
 </script>
