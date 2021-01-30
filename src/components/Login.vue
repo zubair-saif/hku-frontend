@@ -48,7 +48,7 @@
         </div>
         <div class="text-center">
           <router-link to="/forget" class="nav-link"
-            >forget password ?</router-link
+            >Forgotten password?</router-link
           >
         </div>
         <div class="form-group">
@@ -102,6 +102,16 @@ export default class Login extends Vue {
             this.message = error;
           }
         );
+        // .catch(function (error) {
+        //   if (error.response) {
+        //     console.log(error.response.data.reason);
+        //   } else if (error.request) {
+        //     console.log(error.request);
+        //   } else {
+        //     console.log("Error", error.message);
+        //   }
+        //   console.log(error.config);
+        // });
       }
     });
   }

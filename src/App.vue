@@ -106,6 +106,9 @@ export default class App extends Vue {
 </script>
 
 <style>
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
 .bg-infos {
   background-color: rgb(50, 196, 252) !important;
 }

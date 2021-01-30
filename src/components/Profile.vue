@@ -94,28 +94,6 @@
                       aria-valuemax="100"
                     ></div>
                   </div>
-                  <small>Mobile Template</small>
-                  <div class="progress mb-3" style="height: 5px">
-                    <div
-                      class="progress-bar bg-primary"
-                      role="progressbar"
-                      style="width: 55%"
-                      aria-valuenow="55"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <small>Backend API</small>
-                  <div class="progress mb-3" style="height: 5px">
-                    <div
-                      class="progress-bar bg-primary"
-                      role="progressbar"
-                      style="width: 66%"
-                      aria-valuenow="66"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -158,28 +136,6 @@
                       aria-valuemax="100"
                     ></div>
                   </div>
-                  <small>Mobile Template</small>
-                  <div class="progress mb-3" style="height: 5px">
-                    <div
-                      class="progress-bar bg-primary"
-                      role="progressbar"
-                      style="width: 55%"
-                      aria-valuenow="55"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <small>Backend API</small>
-                  <div class="progress mb-3" style="height: 5px">
-                    <div
-                      class="progress-bar bg-primary"
-                      role="progressbar"
-                      style="width: 66%"
-                      aria-valuenow="66"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -188,32 +144,6 @@
       </div>
     </div>
   </div>
-  <!-- <header class="jumbotron">
-      <h3>
-        <strong>{{ currentUser.username }}</strong> Profile
-      </h3>
-      <div>
-        <router-link to="/change-password" class="nav-link">
-          <font-awesome-icon icon="sign-out-alt" /> Change password
-        </router-link>
-      </div>
-    </header>
-
-    <p>
-      <strong>Id:</strong>
-      {{ currentUser.id }}
-    </p>
-    <p>
-      <strong>Email:</strong>
-      {{ currentUser.email }}
-    </p>
-    <strong>roles:</strong>
-    <p>{{ currentUser.roles }}</p> -->
-  <!-- <ul>
-      <li v-for="(role, index) in currentUser.roles" :key="index">
-        {{ role }}
-      </li>
-    </ul> -->
 </template>
 
 <script lang="ts">

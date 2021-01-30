@@ -1,11 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container shadow">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
+      <img id="profile-img" src="../assets/hku.jpg" class="profile-img-card" />
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="email">email</label>
@@ -31,11 +27,11 @@
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>forget password</span>
+            <span>Forget password</span>
           </button>
         </div>
         <div class="text-center">
-          <router-link to="/login" class="nav-link">login ?</router-link>
+          <router-link to="/login" class="nav-link">login here?</router-link>
         </div>
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
