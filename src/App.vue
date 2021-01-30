@@ -1,7 +1,16 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-infos">
-      <a href class="navbar-brand" @click.prevent>Vox Assessment</a>
+      <a class="navbar-brand">
+        <img
+          src="/favicon.ico"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt="logo"
+        />
+        Vox Assessment
+      </a>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
           <!-- <router-link to="/home" class="nav-link">
