@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from '@/components/Home.vue';
 import Login from '@/components/Login.vue';
-import Register from '@/components/Register.vue';
+import Register from '@/components/admin/Register.vue';
 import Forget from '@/components/Forget.vue'
 
 Vue.use(VueRouter);
