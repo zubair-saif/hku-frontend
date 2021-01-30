@@ -24,36 +24,18 @@
             email is required!
           </div>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            v-model="user.password"
-            v-validate="'required'"
-            type="password"
-            class="form-control"
-            name="password"
-          />
-          <div
-            v-if="errors.has('password')"
-            class="alert alert-danger"
-            role="alert"
-          >
-            Password is required!
-          </div>
-        </div>
+
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
             <span
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>Login</span>
+            <span>forget password</span>
           </button>
         </div>
         <div class="text-center">
-          <router-link to="/forget" class="nav-link"
-            >forget password ?</router-link
-          >
+          <router-link to="/login" class="nav-link">login ?</router-link>
         </div>
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
@@ -71,7 +53,7 @@ import { namespace } from "vuex-class";
 const Auth = namespace("Auth");
 
 @Component
-export default class Login extends Vue {
+export default class Forget extends Vue {
   private user: any = { email: "", password: "" };
   private loading: boolean = false;
   private message: string = "";

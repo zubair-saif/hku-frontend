@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-info">
+    <nav class="navbar navbar-expand navbar-dark bg-infos">
       <a href class="navbar-brand" @click.prevent>Vox Assessment</a>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -22,11 +22,11 @@
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link to="/register" class="nav-link">
             <font-awesome-icon icon="user-plus" /> Sign Up
           </router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link to="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
@@ -92,7 +92,7 @@ export default class App extends Vue {
 </script>
 
 <style>
-.bg-info {
+.bg-infos {
   background-color: rgb(50, 196, 252) !important;
 }
 </style>

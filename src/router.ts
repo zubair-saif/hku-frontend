@@ -3,22 +3,27 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Home from '@/components/Home.vue';
 import Login from '@/components/Login.vue';
 import Register from '@/components/Register.vue';
+import Forget from '@/components/Forget.vue'
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
+  // {
+  //   path: '/',
+  //   name: 'home',
+  //   component: Home
+  // },
   {
     path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/home',
-    component: Home
+    component: Login
   },
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/forget',
+    component: Forget
   },
   {
     path: '/register',
@@ -33,17 +38,17 @@ const routes: Array<RouteConfig> = [
   {
     path: '/admin',
     name: 'admin',
-    component: () => import('./components/BoardAdmin.vue')
+    component: () => import('./components/admin/BoardAdmin.vue')
   },
   {
     path: '/mod',
     name: 'moderator',
-    component: () => import('./components/BoardModerator.vue')
+    component: () => import('./components/teacher/BoardModerator.vue')
   },
   {
     path: '/user',
     name: 'user',
-    component: () => import('./components/BoardUser.vue')
+    component: () => import('./components/student/BoardUser.vue')
   }
 ];
 
