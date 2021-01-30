@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
+    <!-- <header class="jumbotron">
       <h3>{{ content }}</h3>
-    </header>
-    <div class="mb-2">
+    </header> -->
+    <div class="my-4">
       <router-link to="/add-user" tag="button" class="nav-link btn btn-success">
         New User
       </router-link>
@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody v-if="users && users.length">
-        <tr v-for="data in users">
+        <tr v-for="data in users" v-bind:key="data.id">
           <th scope="row">{{ data.id }}</th>
           <td>{{ data.name }}</td>
           <td colspan="3">{{ data.email }}</td>
@@ -47,16 +47,26 @@
           </td>
 
           <!-- modal for confirm, delete -->
-          <div class="modal" id="myModal">
+          <div class="modal fade" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <p class="modal-title">
-                    Are you sure, you wants to delete this user
-                  </p>
-                  <button type="button" class="close" data-dismiss="modal">
-                    &times;
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Delete User
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
                   </button>
+                </div>
+                <div class="modal-body">
+                  <p class="text-left">
+                    Are you sure ,you wants to delete this user ?.
+                  </p>
                 </div>
                 <div class="modal-footer">
                   <button
@@ -69,7 +79,7 @@
                   </button>
                   <button
                     type="button"
-                    class="btn btn-info"
+                    class="btn btn-secondary"
                     data-dismiss="modal"
                   >
                     Close
@@ -97,8 +107,8 @@ export default class AdminBoard extends Vue {
   private content = "";
   private users = [];
 
- deleteUser(id){
-      UserService.deleteUser(id).then(
+  deleteUser(id: any) {
+    UserService.deleteUser(id).then(
       (response) => {
         // this.users = response.data.users;
         this.getUsers();
@@ -112,9 +122,9 @@ export default class AdminBoard extends Vue {
           error.toString();
       }
     );
-    }
-    getUsers(){
-UserService.getUsers().then(
+  }
+  getUsers() {
+    UserService.getUsers().then(
       (response) => {
         this.users = response.data.users;
       },
@@ -127,7 +137,7 @@ UserService.getUsers().then(
           error.toString();
       }
     );
-    }
+  }
 
   mounted() {
     UserService.getAdminBoard().then(
@@ -143,9 +153,8 @@ UserService.getUsers().then(
           error.toString();
       }
     );
-   
-this.getUsers();
-    
+
+    this.getUsers();
   }
 }
 </script>

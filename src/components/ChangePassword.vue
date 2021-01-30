@@ -93,7 +93,6 @@ export default class ChnagePasswordComponent extends Vue {
       if (this.user.oldPassword && this.user.newPassword) {
         UserService.changePassword(this.user).then(
           (data) => {
-            console.log(data);
             if (data.data && data.data.message) {
               this.message = data.data.message;
               setTimeout(() => {
