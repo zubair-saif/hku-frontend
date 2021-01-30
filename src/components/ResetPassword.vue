@@ -31,7 +31,9 @@
           </button>
         </div>
         <div class="text-center">
-          <router-link to="/login" class="nav-link">login ?</router-link>
+          <router-link to="/login" class="nav-link"
+            >return to login ?</router-link
+          >
         </div>
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
