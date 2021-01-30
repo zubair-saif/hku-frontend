@@ -83,7 +83,7 @@ router.beforeEach((to, from, next) => {
   const publicPages = ['login', 'forget', 'reset-password'];
   const authRequired = !publicPages.includes(to.name || '');
   const loggedIn = JSON.parse(localStorage.getItem('user')!);
-  console.log(loggedIn.roles);
+  // console.log(loggedIn.roles);
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (authRequired && !loggedIn) {
