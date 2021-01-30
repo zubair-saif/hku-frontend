@@ -18,7 +18,17 @@ class UserService {
 
   getAdminBoard() {
     return axios.get(API_URL + 'users/admin', { headers: authHeader() });
+  } 
+  sendForgetEmail(form){
+    return axios.post(API_URL + 'users/forgetPassword', form);
   }
+  resetForgetPassword(form){
+    return axios.post(API_URL + 'users/resetPassword', form);
+  }
+  changePassword(form){
+  return axios.post(API_URL + 'users/changePassword', form,{ headers: authHeader() });
+  }
+
 }
 
 export default new UserService();

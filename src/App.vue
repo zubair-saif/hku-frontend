@@ -51,6 +51,11 @@
           </router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/change-password" class="nav-link">
+            <font-awesome-icon icon="sign-out-alt" /> Change password
+          </router-link>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href @click.prevent="logOut">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
           </a>

@@ -8,20 +8,38 @@
       />
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
-          <label for="email">email</label>
+          <label for="email">Old Password</label>
           <input
-            v-model="user.email"
+            v-model="user.oldPassword"
             v-validate="'required'"
-            type="text"
+            type="password"
             class="form-control"
-            name="email"
+            name="password"
           />
           <div
-            v-if="errors.has('email')"
+            v-if="errors.has('oldPassword')"
             class="alert alert-danger"
             role="alert"
           >
-            email is required!
+            password is required!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">New Password</label>
+          <input
+            v-model="user.newPassword"
+            v-validate="'required'"
+            type="password"
+            class="form-control"
+            name="newPassword"
+          />
+          <div
+            v-if="errors.has('newPassword')"
+            class="alert alert-danger"
+            role="alert"
+          >
+            password is required!
           </div>
         </div>
 
@@ -31,7 +49,7 @@
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>forget password</span>
+            <span>Change password</span>
           </button>
         </div>
         <div class="text-center">
@@ -53,36 +71,48 @@ import { namespace } from "vuex-class";
 import UserService from "@/services/UserService";
 const Auth = namespace("Auth");
 
+
 @Component
 export default class Forget extends Vue {
-  private user: any = { email: "", password: "" };
+  private user: any = { oldPassword: "", newPassword: "" };
   private loading: boolean = false;
   private message: string = "";
 
   @Auth.Getter
   private isLoggedIn!: boolean;
 
-  @Auth.Action
-  private login!: (data: any) => Promise<any>;
+   @Auth.Action
+  private signOut!: () => void;
+
 
   created() {
-    if (this.isLoggedIn) {
-      this.$router.push("/profile");
-    }
+    // if (this.isLoggedIn) {
+    //   this.$router.push("/profile");
+    // }
+    // console.log(this.user);
   }
 
   handleLogin() {
     this.loading = true;
+        console.log(this.user);
     this.$validator.validateAll().then((isValid) => {
       if (!isValid) {
         this.loading = false;
         return;
       }
 
-      if (this.user.email) {
-        UserService.sendForgetEmail(this.user).then(
+      if (this.user.oldPassword && this.user.newPassword) {
+        UserService.changePassword(this.user).then(
           (data) => {
-            this.$router.push("/login");
+              console.log(data);
+              if(data.data && data.data.message){
+                  this.message = data.data.message;
+                  setTimeout(() => {
+                      this.signOut();
+                       this.$router.push("/login");
+                  }, 2000);
+              }
+            // this.$router.push("/login");
           },
           (error) => {
             this.loading = false;

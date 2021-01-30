@@ -8,20 +8,20 @@
       />
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
-          <label for="email">email</label>
+          <label for="email">Password</label>
           <input
-            v-model="user.email"
+            v-model="user.newPass"
             v-validate="'required'"
-            type="text"
+            type="password"
             class="form-control"
-            name="email"
+            name="password"
           />
           <div
-            v-if="errors.has('email')"
+            v-if="errors.has('newPass')"
             class="alert alert-danger"
             role="alert"
           >
-            email is required!
+            password is required!
           </div>
         </div>
 
@@ -31,7 +31,7 @@
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>forget password</span>
+            <span>Change password</span>
           </button>
         </div>
         <div class="text-center">
@@ -55,7 +55,7 @@ const Auth = namespace("Auth");
 
 @Component
 export default class Forget extends Vue {
-  private user: any = { email: "", password: "" };
+  private user: any = { newPass: "", resetLink: this.$route.params.id };
   private loading: boolean = false;
   private message: string = "";
 
@@ -69,18 +69,20 @@ export default class Forget extends Vue {
     if (this.isLoggedIn) {
       this.$router.push("/profile");
     }
+    console.log(this.user);
   }
 
   handleLogin() {
     this.loading = true;
+        console.log(this.user);
     this.$validator.validateAll().then((isValid) => {
       if (!isValid) {
         this.loading = false;
         return;
       }
 
-      if (this.user.email) {
-        UserService.sendForgetEmail(this.user).then(
+      if (this.user.newPass && this.user.resetLink) {
+        UserService.resetForgetPassword(this.user).then(
           (data) => {
             this.$router.push("/login");
           },
