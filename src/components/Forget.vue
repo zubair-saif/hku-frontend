@@ -55,7 +55,7 @@ const Auth = namespace("Auth");
 
 @Component
 export default class Forget extends Vue {
-  private user: any = { email: "", password: "" };
+  private user: any = { email: "" };
   private loading: boolean = false;
   private message: string = "";
 

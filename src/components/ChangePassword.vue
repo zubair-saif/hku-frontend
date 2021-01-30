@@ -71,9 +71,8 @@ import { namespace } from "vuex-class";
 import UserService from "@/services/UserService";
 const Auth = namespace("Auth");
 
-
 @Component
-export default class Forget extends Vue {
+export default class ChnagePasswordComponent extends Vue {
   private user: any = { oldPassword: "", newPassword: "" };
   private loading: boolean = false;
   private message: string = "";
@@ -81,9 +80,8 @@ export default class Forget extends Vue {
   @Auth.Getter
   private isLoggedIn!: boolean;
 
-   @Auth.Action
+  @Auth.Action
   private signOut!: () => void;
-
 
   created() {
     // if (this.isLoggedIn) {
@@ -94,7 +92,7 @@ export default class Forget extends Vue {
 
   handleLogin() {
     this.loading = true;
-        console.log(this.user);
+    console.log(this.user);
     this.$validator.validateAll().then((isValid) => {
       if (!isValid) {
         this.loading = false;
@@ -104,14 +102,14 @@ export default class Forget extends Vue {
       if (this.user.oldPassword && this.user.newPassword) {
         UserService.changePassword(this.user).then(
           (data) => {
-              console.log(data);
-              if(data.data && data.data.message){
-                  this.message = data.data.message;
-                  setTimeout(() => {
-                      this.signOut();
-                       this.$router.push("/login");
-                  }, 2000);
-              }
+            console.log(data);
+            if (data.data && data.data.message) {
+              this.message = data.data.message;
+              setTimeout(() => {
+                this.signOut();
+                this.$router.push("/login");
+              }, 2000);
+            }
             // this.$router.push("/login");
           },
           (error) => {

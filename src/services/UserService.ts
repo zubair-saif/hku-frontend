@@ -18,15 +18,15 @@ class UserService {
 
   getAdminBoard() {
     return axios.get(API_URL + 'users/admin', { headers: authHeader() });
-  } 
-  sendForgetEmail(form){
+  }
+  sendForgetEmail(form: any) {
     return axios.post(API_URL + 'users/forgetPassword', form);
   }
-  resetForgetPassword(form){
+  resetForgetPassword(form: any) {
     return axios.post(API_URL + 'users/resetPassword', form);
   }
-  changePassword(form){
-  return axios.post(API_URL + 'users/changePassword', form,{ headers: authHeader() });
+  changePassword(form: any) {
+    return axios.post(API_URL + 'users/changePassword', form, { headers: authHeader() });
   }
 
 }

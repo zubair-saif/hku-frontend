@@ -3,8 +3,8 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Home from '@/components/Home.vue';
 import Login from '@/components/Login.vue';
 import AddUpdateUserComponent from '@/components/admin/AddUpdateUser.vue';
-import ResetPasswordComponent from '@/components/ResetPassword';
-import ChnagePasswordComponent from '@/components/ChangePassword';
+import ResetPasswordComponent from '@/components/ResetPassword.vue';
+import ChnagePasswordComponent from '@/components/ChangePassword.vue';
 import Forget from '@/components/Forget.vue'
 
 Vue.use(VueRouter);
@@ -31,17 +31,17 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/reset-password/:id',
-    name:'reset-password',
+    name: 'reset-password',
     component: ResetPasswordComponent
   },
   {
     path: '/change-password',
-    name:'change-password',
+    name: 'change-password',
     component: ChnagePasswordComponent
   },
   {
     path: '/add-user',
-    name:'new-user',
+    name: 'new-user',
     component: AddUpdateUserComponent
   },
   {
@@ -74,16 +74,16 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
-  const publicPages = ['login','forget', 'reset-password'];
-  const authRequired = !publicPages.includes(to.name);
-  const loggedIn = JSON.parse(localStorage.getItem('user'));
+
+  const publicPages = ['login', 'forget', 'reset-password'];
+  const authRequired = !publicPages.includes(to.name || '');
+  const loggedIn = JSON.parse(localStorage.getItem('user')!);
   // console.log(loggedIn.roles);
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (authRequired && !loggedIn) {
     next('/login');
-  }  else if(to.name=='new-user' && loggedIn && loggedIn.roles!='admin'){
+  } else if (to.name == 'new-user' && loggedIn && loggedIn.roles != 'admin') {
     next('/profile');
   } else {
     next();

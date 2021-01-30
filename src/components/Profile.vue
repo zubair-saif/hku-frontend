@@ -14,12 +14,13 @@
       <strong>Email:</strong>
       {{ currentUser.email }}
     </p>
-    <strong>Authorities:</strong>
-    <ul>
+    <strong>roles:</strong>
+    <p>{{ currentUser.roles }}</p>
+    <!-- <ul>
       <li v-for="(role, index) in currentUser.roles" :key="index">
         {{ role }}
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 

@@ -54,7 +54,7 @@ import UserService from "@/services/UserService";
 const Auth = namespace("Auth");
 
 @Component
-export default class Forget extends Vue {
+export default class ResetPasswordComponent extends Vue {
   private user: any = { newPass: "", resetLink: this.$route.params.id };
   private loading: boolean = false;
   private message: string = "";
@@ -74,7 +74,7 @@ export default class Forget extends Vue {
 
   handleLogin() {
     this.loading = true;
-        console.log(this.user);
+    console.log(this.user);
     this.$validator.validateAll().then((isValid) => {
       if (!isValid) {
         this.loading = false;
