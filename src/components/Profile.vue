@@ -14,7 +14,7 @@
                 />
                 <div class="mt-3">
                   <h4>{{ currentUser.username }}</h4>
-                  <p class="text-secondary mb-1">Full Stack Developer</p>
+                  <p class="text-secondary mb-1">Assistant Professor</p>
                   <p class="text-muted font-size-sm">
                     Bay Area, San Francisco, CA
                   </p>

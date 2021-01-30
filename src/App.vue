@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-infos">
+    <nav
+      class="navbar navbar-expand navbar-dark bg-infos"
+      v-if="!['login'].includes($route.name)"
+    >
       <a class="navbar-brand">
         <img
           src="/favicon.ico"
