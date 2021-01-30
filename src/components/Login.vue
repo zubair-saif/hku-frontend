@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12">
-    <div class="card card-container">
+    <div class="card card-container shadow">
       <img
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -49,6 +49,9 @@
             ></span>
             <span>Login</span>
           </button>
+        </div>
+        <div class="text-center">
+          <a href="#">forget password ?</a>
         </div>
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
