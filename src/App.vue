@@ -18,16 +18,20 @@
           </router-link> -->
         </li>
         <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/admin" class="nav-link">Admin Board</router-link>
+          <router-link to="/admin" class="nav-link"
+            >Admin Dashboard</router-link
+          >
         </li>
         <li v-if="showModeratorBoard" class="nav-item">
-          <router-link to="/mod" class="nav-link">Teacher Board</router-link>
+          <router-link to="/mod" class="nav-link"
+            >Teacher Dashboard</router-link
+          >
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link v-if="currentUser" to="/user" class="nav-link"
             >User</router-link
           >
-        </li>
+        </li> -->
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -50,14 +54,10 @@
             {{ currentUser.username }}
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/change-password" class="nav-link">
-            <font-awesome-icon icon="sign-out-alt" /> Change password
-          </router-link>
-        </li>
+        <li class="nav-item"></li>
         <li class="nav-item">
           <a class="nav-link" href @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
+            <font-awesome-icon icon="sign-out-alt" /> Sign out
           </a>
         </li>
       </div>

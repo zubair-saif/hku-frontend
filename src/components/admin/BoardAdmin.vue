@@ -4,7 +4,9 @@
       <h3>{{ content }}</h3>
     </header>
     <div class="mb-2">
-      <button type="button" class="btn btn-success">New User</button>
+      <router-link to="/add-user" tag="button" class="nav-link btn btn-success">
+        New User
+      </router-link>
     </div>
     <table class="table table-hover table-bordered">
       <thead class="thead-dark">

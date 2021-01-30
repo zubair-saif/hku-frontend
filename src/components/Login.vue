@@ -1,11 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container shadow">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
+      <img id="profile-img" src="../assets/hku.jpg" class="profile-img-card" />
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="email">email</label>

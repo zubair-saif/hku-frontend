@@ -1,20 +1,15 @@
 <template>
   <div class="col-md-12">
-    <div class="card card-container shadow">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
+    <div class="card card-container border-0">
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
-          <label for="email">Old Password</label>
+          <label for="oldPassword">Current Password</label>
           <input
             v-model="user.oldPassword"
             v-validate="'required'"
             type="password"
             class="form-control"
-            name="password"
+            name="oldPassword"
           />
           <div
             v-if="errors.has('oldPassword')"
@@ -51,9 +46,6 @@
             ></span>
             <span>Change password</span>
           </button>
-        </div>
-        <div class="text-center">
-          <router-link to="/login" class="nav-link">login ?</router-link>
         </div>
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
@@ -92,7 +84,6 @@ export default class ChnagePasswordComponent extends Vue {
 
   handleLogin() {
     this.loading = true;
-    console.log(this.user);
     this.$validator.validateAll().then((isValid) => {
       if (!isValid) {
         this.loading = false;
@@ -135,25 +126,8 @@ label {
 }
 
 .card {
-  background-color: #f7f7f7;
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.profile-img-card {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
 }
 </style>

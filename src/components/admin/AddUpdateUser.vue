@@ -73,7 +73,7 @@ import { namespace } from "vuex-class";
 const Auth = namespace("Auth");
 
 @Component
-export default class Register extends Vue {
+export default class AddUpdateUser extends Vue {
   private user: any = { email: "", password: "" };
 
   private submitted: boolean = false;
