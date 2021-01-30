@@ -6,7 +6,7 @@
     <div class="mb-2">
       <button type="button" class="btn btn-success">New User</button>
     </div>
-    <table class="table table-hover">
+    <table class="table table-hover table-bordered">
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
@@ -78,3 +78,11 @@ export default class AdminBoard extends Vue {
 }
 </script>
 
+
+<style >
+table,
+th,
+td {
+  text-align: center !important;
+}
+</style>
