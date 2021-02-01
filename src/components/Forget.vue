@@ -7,7 +7,7 @@
           <label for="email">email</label>
           <input
             v-model="user.email"
-            v-validate="'required'"
+            v-validate="'required|email'"
             type="text"
             class="form-control"
             name="email"

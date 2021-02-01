@@ -47,10 +47,12 @@
             <span>Change password</span>
           </button>
         </div>
-        <div class="form-group">
-          <div v-if="message" class="alert alert-danger" role="alert">
-            {{ message }}
-          </div>
+        <div
+          v-if="message"
+          class="alert"
+          :class="successful ? 'alert-success' : 'alert-danger'"
+        >
+          {{ message }}
         </div>
       </form>
     </div>
@@ -68,6 +70,7 @@ export default class ChnagePasswordComponent extends Vue {
   private user: any = { oldPassword: "", newPassword: "" };
   private loading: boolean = false;
   private message: string = "";
+  private successful: boolean = false;
 
   @Auth.Getter
   private isLoggedIn!: boolean;
@@ -95,12 +98,12 @@ export default class ChnagePasswordComponent extends Vue {
           (data) => {
             if (data.data && data.data.message) {
               this.message = data.data.message;
+              this.successful = true;
               setTimeout(() => {
                 this.signOut();
                 this.$router.push("/login");
               }, 2000);
             }
-            // this.$router.push("/login");
           },
           (error) => {
             this.loading = false;

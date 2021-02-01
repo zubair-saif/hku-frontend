@@ -12,11 +12,7 @@
             class="form-control"
             name="email"
           />
-          <div
-            v-if="errors.has('email')"
-            class="alert alert-danger"
-            role="alert"
-          >
+          <div v-if="errors.has('email')" class="invalid-feedback">
             email is required or Invalid!
           </div>
         </div>
@@ -29,11 +25,7 @@
             class="form-control"
             name="password"
           />
-          <div
-            v-if="errors.has('password')"
-            class="alert alert-danger"
-            role="alert"
-          >
+          <div v-if="errors.has('password')" class="invalid-feedback">
             Password is required!
           </div>
         </div>
@@ -48,7 +40,7 @@
         </div>
         <div class="text-center">
           <router-link to="/forget" class="nav-link"
-            >Forgotten password?</router-link
+            >Forgot password?</router-link
           >
         </div>
         <div class="form-group">
@@ -102,6 +94,7 @@ export default class Login extends Vue {
             this.message = error;
           }
         );
+
         // .catch(function (error) {
         //   if (error.response) {
         //     console.log(error.response.data.reason);
@@ -123,7 +116,9 @@ label {
   display: block;
   margin-top: 10px;
 }
-
+.invalid-feedback {
+  display: inline;
+}
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
