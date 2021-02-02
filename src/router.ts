@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from '@/components/Home.vue';
 import Login from '@/components/Login.vue';
 import AddUpdateUserComponent from '@/components/admin/AddUpdateUser.vue';
 import ResetPasswordComponent from '@/components/ResetPassword.vue';
@@ -10,11 +9,7 @@ import Forget from '@/components/Forget.vue'
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: Home
-  // },
+
   {
     path: '/',
     component: Login
@@ -88,7 +83,7 @@ router.beforeEach((to, from, next) => {
   // redirect to login page
   if (authRequired && !loggedIn) {
     next('/login');
-  } else if ((to.name == 'new-user' || to.name=='update-user') && loggedIn && loggedIn.roles != 'admin') {
+  } else if ((to.name == 'new-user' || to.name == 'update-user') && loggedIn && loggedIn.roles != 'admin') {
     next('/profile');
   } else {
     next();
