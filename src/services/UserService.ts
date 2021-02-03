@@ -46,6 +46,13 @@ class UserService {
   deleteUser(id: any) {
     return axios.delete(API_URL + 'users/deleteUser/' + id, { headers: authHeader() });
   }
+
+  addCourse(form: any) {
+    return axios.post(API_URL + 'course/create', form, { headers: authHeader() });
+  }
+  getTeacherCourse() {
+    return axios.get(API_URL + 'teacher/courseList', { headers: authHeader() });
+  }
 }
 
 export default new UserService();

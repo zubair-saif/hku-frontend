@@ -46,11 +46,6 @@ const routes: Array<RouteConfig> = [
     component: AddUpdateUserComponent
   },
   {
-    path: '/assessment',
-    name: 'assessment',
-    component: AddUpdateAssessment
-  },
-  {
     path: '/profile',
     name: 'profile',
     // lazy-loaded
@@ -66,6 +61,16 @@ const routes: Array<RouteConfig> = [
     path: '/mod',
     name: 'moderator',
     component: () => import('./components/teacher/BoardModerator.vue')
+  },
+  {
+    path: '/course',
+    name: 'add-course',
+    component: () => import('./components/teacher/AddUpdateCourse.vue')
+  },
+  {
+    path: '/assessment',
+    name: 'add-assessment',
+    component: () => import('./components/teacher/Assessment.vue')
   },
   {
     path: '/user',

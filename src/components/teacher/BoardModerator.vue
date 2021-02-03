@@ -9,24 +9,29 @@
       style="margin-top: 16px; margin-bottom: 8px"
     >
       <div class="col-md-auto">
-        <button type="button" class="btn btn-success">Add Course</button>
+        <router-link to="/course" tag="button" class="btn btn-success">
+          Add Course
+        </router-link>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row" v-if="content && content.length">
+      <div class="col-md-4 mb-4" v-for="data in content" v-bind:key="data.id">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Course 1</h5>
+            <h5 class="card-title">{{ data.courseName }}</h5>
             <p class="card-text text-truncate">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              {{ data.description }}
             </p>
           </div>
           <div class="card-footer text-center">
-            <button type="button" class="btn btn-primary btn-sm mr-2">
+            <router-link
+              to="/assessment"
+              tag="button"
+              class="btn btn-primary btn-sm mr-2"
+            >
               view assessment
-            </button>
+            </router-link>
             <button type="button" class="btn btn-success btn-sm mr-2">
               Setting
             </button>
@@ -34,47 +39,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Course 1</h5>
-            <p class="card-text text-truncate">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.the card's content. bulk of the card's
-              content.the card's content.
-            </p>
-          </div>
-          <div class="card-footer text-center">
-            <button type="button" class="btn btn-primary btn-sm mr-2">
-              view assessment
-            </button>
-            <button type="button" class="btn btn-success btn-sm mr-2">
-              Setting
-            </button>
-            <button type="button" class="btn btn-danger btn-sm">Remove</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Course 1</h5>
-            <p class="card-text text-truncate">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.the card's content. bulk of the card's
-              content.the card's content.
-            </p>
-          </div>
-          <div class="card-footer text-center">
-            <button type="button" class="btn btn-primary btn-sm mr-2">
-              view assessment
-            </button>
-            <button type="button" class="btn btn-success btn-sm mr-2">
-              Setting
-            </button>
-            <button type="button" class="btn btn-danger btn-sm">Remove</button>
-          </div>
-        </div>
+      <div class="col-md-4 mb-4" v-if="!content || !content.length">
+        Not course added yet
       </div>
     </div>
   </div>
@@ -89,9 +55,10 @@ export default class ModeratorBoard extends Vue {
   private content = "";
 
   mounted() {
-    UserService.getModeratorBoard().then(
+    UserService.getTeacherCourse().then(
       (response) => {
-        this.content = response.data;
+        this.content = response.data.teacher.course;
+        console.log();
       },
       (error) => {
         this.content =
