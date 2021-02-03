@@ -25,6 +25,11 @@
             >Admin Dashboard</router-link
           >
         </li>
+        <li v-if="showAdminBoard" class="nav-item">
+          <router-link to="/assessment" class="nav-link"
+            >Assessment</router-link
+          >
+        </li>
         <li v-if="showModeratorBoard" class="nav-item">
           <router-link to="/mod" class="nav-link"
             >Teacher Dashboard</router-link

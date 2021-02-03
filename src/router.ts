@@ -4,7 +4,8 @@ import Login from '@/components/Login.vue';
 import AddUpdateUserComponent from '@/components/admin/AddUpdateUser.vue';
 import ResetPasswordComponent from '@/components/ResetPassword.vue';
 import ChnagePasswordComponent from '@/components/ChangePassword.vue';
-import Forget from '@/components/Forget.vue'
+import AddUpdateAssessment from '@/components/admin/AddUpdateAssessment.vue'
+import Forget from '@/components/Forget.vue';
 
 Vue.use(VueRouter);
 
@@ -45,10 +46,16 @@ const routes: Array<RouteConfig> = [
     component: AddUpdateUserComponent
   },
   {
+    path: '/assessment',
+    name: 'assessment',
+    component: AddUpdateAssessment
+  },
+  {
     path: '/profile',
     name: 'profile',
     // lazy-loaded
     component: () => import('./components/Profile.vue')
+
   },
   {
     path: '/admin',
