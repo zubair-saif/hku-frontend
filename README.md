@@ -1,4 +1,4 @@
-# HKU ASSESSMENT
+# HKU ASSESSMENTS
 
 ## Project setup
 ```
